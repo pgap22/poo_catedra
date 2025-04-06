@@ -1,0 +1,17 @@
+{
+  "name": "poo_catedra",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i ./src/main/resources/css/input.css -o ./src/main/webapp/css/input.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.3",
+    "tailwindcss": "^4.1.3"
+  }
+}
