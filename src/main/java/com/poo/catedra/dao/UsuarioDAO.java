@@ -22,13 +22,13 @@ public class UsuarioDAO {
     }
 
     public int insertar(Usuario usuario) {
-        String sql = "INSERT INTO usuarios (nombreUsuario, rol) VALUES (?, ?)";
-        return Conexion.execute(sql, usuario.getNombreUsuario(), usuario.getRol());
+        String sql = "INSERT INTO usuarios (nombreUsuario, rol, password) VALUES (?, ?, ?)";
+        return Conexion.execute(sql, usuario.getNombreUsuario(), usuario.getRol(), usuario.getPassword());
     }
 
     public int actualizar(Usuario usuario) {
-        String sql = "UPDATE usuarios SET nombreUsuario = ?, rol = ? WHERE id = ?";
-        return Conexion.execute(sql, usuario.getNombreUsuario(), usuario.getRol(), usuario.getId());
+        String sql = "UPDATE usuarios SET nombreUsuario = ?, rol = ?, password = ? WHERE id = ?";
+        return Conexion.execute(sql, usuario.getNombreUsuario(), usuario.getRol(),usuario.getPassword(), usuario.getId());
     }
 
     public int eliminar(int id) {
