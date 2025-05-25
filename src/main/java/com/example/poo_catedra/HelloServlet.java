@@ -1,7 +1,10 @@
 package com.example.poo_catedra;
 
 import java.io.*;
+import java.util.List;
 
+import com.poo.catedra.dao.UsuarioDAO;
+import com.poo.catedra.model.Usuario;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -17,7 +20,16 @@ public class HelloServlet extends HttpServlet {
         response.setContentType("text/html");
 
         // Hello
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        List<Usuario> usuarios = usuarioDAO.obtenerTodos();
+
         PrintWriter out = response.getWriter();
+
+        usuarios.forEach(u -> {
+            out.println(u.toString());
+        });
+
+
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
         out.println("</body></html>");
