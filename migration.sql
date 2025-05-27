@@ -110,3 +110,18 @@ ALTER TABLE `asignaciones` ADD CONSTRAINT `asignaciones_empleadoId_fkey` FOREIGN
 
 -- AddForeignKey
 ALTER TABLE `subtareas` ADD CONSTRAINT `subtareas_asignacionId_fkey` FOREIGN KEY (`asignacionId`) REFERENCES `asignaciones`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+
+INSERT INTO usuarios (
+    id, email, password, rol, estado,
+    fecha_creacion, fecha_actualizacion, fecha_inactivacion
+) VALUES (
+             1,
+             'asd@a.com',
+             'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',
+             'admin',
+             1,
+             '2025-05-26 23:47:03.307',
+             '2025-05-26 23:47:11.002',
+             NULL
+         );
