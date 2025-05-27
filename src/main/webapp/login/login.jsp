@@ -41,7 +41,13 @@
         <h2 class="text-xl font-semibold text-mw-text-light mb-2">Iniciar Sesión</h2>
         <p class="text-gray-500 text-sm">Accede a tu panel de gestión y lleva el control total de tus proyectos y personal especializado.</p>
     </div>
-    <form action="/login" method="post">
+    <% String error = (String) request.getAttribute("error"); %>
+    <% if (error != null) { %>
+    <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+        <span class="block sm:inline"><%= error %></span>
+    </div>
+    <% } %>
+    <form action='/loginController' method="post" novalidate>
         <div class="mb-4">
             <label for="email" class="block text-mw-text-label text-sm font-semibold mb-2">Email</label>
             <input type="email" id="email" name="email" class="shadow appearance-none border border-mw-input-border rounded w-full py-2 px-3 text-mw-text-light leading-tight focus:outline-none focus:shadow-outline bg-mw-input placeholder-mw-placeholder" placeholder="Ingresa tu correo electrónico">
