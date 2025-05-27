@@ -1,11 +1,13 @@
 package com.poo.catedra.model;
 
+import com.poo.catedra.enums.EstadoCotizacion;
+
 import java.time.LocalDateTime;
 
 public class Cotizacion {
     private int id;
     private int clienteId;
-    private String estado; // Usamos String para mapear ENUM ('EnProceso', 'Finalizada')
+    private EstadoCotizacion estado; // Usamos String para mapear ENUM ('EnProceso', 'Finalizada')
     private LocalDateTime fechaInicioTentativa;
     private LocalDateTime fechaFinTentativa;
     private double costoAdicionales;
@@ -17,7 +19,7 @@ public class Cotizacion {
         this.fechaCreacion = LocalDateTime.now();
     }
     // Constructor completo
-    public Cotizacion(int id, int clienteId, String estado, LocalDateTime fechaInicioTentativa,
+    public Cotizacion(int id, int clienteId, EstadoCotizacion estado, LocalDateTime fechaInicioTentativa,
                       LocalDateTime fechaFinTentativa, double costoAdicionales, int creadoPorId, LocalDateTime fechaCreacion) {
         this.id = id;
         this.clienteId = clienteId;
@@ -29,7 +31,6 @@ public class Cotizacion {
         this.fechaCreacion = fechaCreacion;
     }
 
-    // Getters y Setters
     public int getId() {
         return id;
     }
@@ -46,11 +47,11 @@ public class Cotizacion {
         this.clienteId = clienteId;
     }
 
-    public String getEstado() {
+    public EstadoCotizacion getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadoCotizacion estado) {
         this.estado = estado;
     }
 
@@ -92,20 +93,5 @@ public class Cotizacion {
 
     public void setFechaCreacion(LocalDateTime fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
-    }
-
-    // Método toString para debug
-    @Override
-    public String toString() {
-        return "Cotizacion{" +
-                "id=" + id +
-                ", clienteId=" + clienteId +
-                ", estado='" + estado + '\'' +
-                ", fechaInicioTentativa=" + fechaInicioTentativa +
-                ", fechaFinTentativa=" + fechaFinTentativa +
-                ", costoAdicionales=" + costoAdicionales +
-                ", creadoPorId=" + creadoPorId +
-                ", fechaCreacion=" + fechaCreacion +
-                '}';
     }
 }

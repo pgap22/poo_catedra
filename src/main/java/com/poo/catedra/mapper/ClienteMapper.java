@@ -16,7 +16,7 @@ public class ClienteMapper implements Mapper<Cliente> {
         cliente.setId(rs.getInt("id"));
         cliente.setNombre(rs.getString("nombre"));
         cliente.setDocumentoIdentificacion(rs.getString("documentoIdentificacion"));
-        cliente.setTipoPersona(TipoPersona.valueOf(rs.getString("tipoPersona").toUpperCase()));
+        cliente.setTipoPersona(TipoPersona.valueOf(rs.getString("tipoPersona")));
         cliente.setTelefono(rs.getString("telefono"));
         cliente.setCorreo(rs.getString("correo"));
         cliente.setDireccion(rs.getString("direccion"));
