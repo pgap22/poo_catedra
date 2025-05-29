@@ -14,10 +14,11 @@ public class Asignacion {
     private double costoPorHora;
     private double incrementoExtraPorcentaje;
     private double cantidadHorasAproximadas;
-    // Constructor vacío
+
+    // Constructor vacío necesario para frameworks o inicialización por defecto
     public Asignacion() {}
 
-    // Constructor completo
+    // Constructor completo que permite inicializar todos los campos
     public Asignacion(int id, int cotizacionId, int empleadoId, String areaAsignada, String tituloActividad,
                       LocalDateTime fechaHoraInicio, LocalDateTime fechaHoraFin, double costoPorHora,
                       double incrementoExtraPorcentaje, double cantidadHorasAproximadas) {
@@ -33,7 +34,7 @@ public class Asignacion {
         this.cantidadHorasAproximadas = cantidadHorasAproximadas;
     }
 
-    // Getters y Setters...
+    // Getters y Setters para acceso y modificación de atributos privados
 
     public int getId() {
         return id;
@@ -115,15 +116,18 @@ public class Asignacion {
         return cantidadHorasAproximadas;
     }
 
+    // Calcula el costo base sin incluir incrementos
     public double getCostoBase() {
         return getCantidadHorasAproximadas() * costoPorHora;
     }
 
+    // Calcula el total incluyendo el incremento porcentual extra
     public double getTotal() {
         double costoBase = getCostoBase();
         return costoBase + (costoBase * (incrementoExtraPorcentaje / 100));
     }
 
+    // Representación del objeto Asignacion en forma de cadena (útil para depuración o impresión)
     @Override
     public String toString() {
         return "Asignacion{" +
