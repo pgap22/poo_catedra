@@ -9,15 +9,16 @@ public class HashChecker {
     public static String sha256(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] hashBytes = md.digest(input.getBytes());
+            byte[] hashBytes = md.digest(input.getBytes()); // Calcula el hash del texto de entrada
 
             StringBuilder sb = new StringBuilder();
             for (byte b : hashBytes) {
-                sb.append(String.format("%02x", b)); // convertir a hexadecimal
+                sb.append(String.format("%02x", b)); // Convierte cada byte a su representación hexadecimal
             }
 
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
+
             throw new RuntimeException("Algoritmo SHA-256 no disponible", e);
         }
     }
@@ -28,6 +29,4 @@ public class HashChecker {
         return hashCalculado.equalsIgnoreCase(hashEsperado);
     }
 
-
 }
-
