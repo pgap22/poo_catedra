@@ -17,7 +17,7 @@
     <div class="bg-[#9A1C1E] aspect-square rounded-sm w-6">
 
     </div>
-    <p>Multi-Works Group</p>
+    <p> Multi-Works Group</p>
   </header>
   <div class="grid grid-cols-[max-content_1fr] gap-4">
     <nav>
