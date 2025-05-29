@@ -9,13 +9,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Logger;
 
-@WebServlet(name = "clienteController", value = "/admin/clienteController")
+@WebServlet(name = "clienteController", value = "/module/clienteController")
 public class ClienteController extends HttpServlet {
     private final ClienteDAO clienteDAO = new ClienteDAO();
 
@@ -23,6 +24,8 @@ public class ClienteController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String accion = request.getParameter("accion");
         int id = Integer.parseInt(request.getParameter("id"));
+        HttpSession session = request.getSession(false);
+        String rol = (String) session.getAttribute("rol");
 
         switch (accion) {
             case "toggleEstado":
@@ -53,12 +56,14 @@ public class ClienteController extends HttpServlet {
                 break;
         }
 
-        response.sendRedirect("clientes.jsp");
+        response.sendRedirect("/"+rol+"/clientes.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String accion = request.getParameter("accion");
+        HttpSession session = request.getSession(false);
+        String rol = (String) session.getAttribute("rol");
 
         switch (accion) {
             case "crear":
@@ -78,14 +83,14 @@ public class ClienteController extends HttpServlet {
                 if (!erroresCrear.isEmpty()) {
                     // Guardar errores en request y redirigir al formulario
                     request.setAttribute("error", erroresCrear.getFirst());
-                    request.getRequestDispatcher("/admin/clientes.jsp").forward(request, response);
+                    request.getRequestDispatcher("/"+rol+"/clientes.jsp").forward(request, response);
                     return;
                 }
 
                 Cliente clienteMismoDocumento = clienteDAO.obtenerPorDocumentoIdentificacion(nuevo.getDocumentoIdentificacion());
                 if (clienteMismoDocumento != null) {
                     request.setAttribute("error", "Cliente con mismo documento de identificacion");
-                    request.getRequestDispatcher("/admin/clientes.jsp").forward(request, response);
+                    request.getRequestDispatcher("/"+rol+"/clientes.jsp").forward(request, response);
                     return;
                 }
 
@@ -109,14 +114,14 @@ public class ClienteController extends HttpServlet {
                     if (!erroresEditar.isEmpty()) {
                         // Guardar errores en request y redirigir al formulario
                         request.setAttribute("error", erroresEditar.getFirst());
-                        request.getRequestDispatcher("/admin/clientes.jsp").forward(request, response);
+                        request.getRequestDispatcher("/"+rol+"/clientes.jsp").forward(request, response);
                         return;
                     }
 
                     Cliente clienteMismoDocumentoEditar = clienteDAO.obtenerPorDocumentoIdentificacion(existente.getDocumentoIdentificacion());
                     if (clienteMismoDocumentoEditar != null && clienteMismoDocumentoEditar.getId() != existente.getId()) {
                         request.setAttribute("error", "Cliente con mismo documento de identificacion");
-                        request.getRequestDispatcher("/admin/clientes.jsp").forward(request, response);
+                        request.getRequestDispatcher("/"+rol+"/clientes.jsp").forward(request, response);
                         return;
                     }
 
@@ -128,6 +133,6 @@ public class ClienteController extends HttpServlet {
                 break;
         }
 
-        response.sendRedirect("clientes.jsp");
+        response.sendRedirect("/"+rol+"/clientes.jsp");
     }
 }

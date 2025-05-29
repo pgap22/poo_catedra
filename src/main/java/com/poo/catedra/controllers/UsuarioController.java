@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Logger;
 
-@WebServlet(name = "usuarioController", value = "/usuarioController")
+@WebServlet(name = "usuarioController", value = "/admin/usuarioController")
 public class UsuarioController extends HttpServlet {
 
     @Override

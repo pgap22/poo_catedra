@@ -10,12 +10,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@WebServlet(name = "cotizacionController", value = "/admin/cotizacionController")
+@WebServlet(name = "cotizacionController", value = "/module/cotizacionController")
 public class CotizacionController extends HttpServlet {
     private final CotizacionDAO cotizacionDAO = new CotizacionDAO();
 
@@ -23,6 +24,8 @@ public class CotizacionController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String accion = request.getParameter("accion");
         int id = Integer.parseInt(request.getParameter("id"));
+        HttpSession session = request.getSession(false);
+        String rol = (String) session.getAttribute("rol");
 
         switch (accion) {
             case "toggleEstado":
@@ -46,12 +49,14 @@ public class CotizacionController extends HttpServlet {
                 break;
         }
 
-        response.sendRedirect("cotizaciones.jsp");
+        response.sendRedirect("/"+rol+"/cotizaciones.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String accion = request.getParameter("accion");
+        HttpSession session = request.getSession(false);
+        String rol = (String) session.getAttribute("rol");
 
         switch (accion) {
             case "crear":
@@ -68,7 +73,7 @@ public class CotizacionController extends HttpServlet {
                 List<String> erroresCrear = CotizacionValidator.validar(nueva);
                 if (!erroresCrear.isEmpty()) {
                     request.setAttribute("error", erroresCrear.getFirst());
-                    request.getRequestDispatcher("/admin/cotizaciones.jsp").forward(request, response);
+                    request.getRequestDispatcher("/"+rol+"/cotizaciones.jsp").forward(request, response);
                     return;
                 }
 
@@ -89,7 +94,7 @@ public class CotizacionController extends HttpServlet {
                     List<String> erroresEditar = CotizacionValidator.validar(existente);
                     if (!erroresEditar.isEmpty()) {
                         request.setAttribute("error", erroresEditar.getFirst());
-                        request.getRequestDispatcher("/admin/cotizaciones.jsp").forward(request, response);
+                        request.getRequestDispatcher("/"+rol+"/cotizaciones.jsp").forward(request, response);
                         return;
                     }
 
@@ -101,6 +106,6 @@ public class CotizacionController extends HttpServlet {
                 break;
         }
 
-        response.sendRedirect("/admin/cotizaciones.jsp");
+        response.sendRedirect("/"+rol+"/cotizaciones.jsp");
     }
 }

@@ -2,6 +2,6 @@
 
 <%@ include file="/partials/admin/header.jsp" %>
 
-<%@ include file="/modules/empleados/empleados.jsp" %>
+<%@ include file="/modules/cotizaciones/asignaciones/asignacion.jsp" %>
 
 <%@ include file="/partials/admin/footer.jsp" %>

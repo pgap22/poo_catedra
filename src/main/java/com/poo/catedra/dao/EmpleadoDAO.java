@@ -92,4 +92,9 @@ public class EmpleadoDAO {
         String sql = "SELECT * FROM empleados WHERE documentoIdentificacion = ?";
         return Conexion.queryOne(sql, mapper, documentoIdentificacion);
     }
+
+    public List<Empleado> obtenerEmpleadosActivos() {
+        String sql = "SELECT * FROM empleados WHERE estado = 1";
+        return Conexion.query(sql, mapper);
+    }
 }

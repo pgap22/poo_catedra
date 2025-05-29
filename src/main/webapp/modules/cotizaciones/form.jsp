@@ -2,10 +2,14 @@
 <%@ page import="com.poo.catedra.dao.CotizacionDAO" %>
 <%@ page import="com.poo.catedra.model.Cotizacion" %>
 <%@ page import="com.poo.catedra.enums.EstadoCotizacion" %>
+<%@ page import="com.poo.catedra.model.Cliente" %>
+<%@ page import="com.poo.catedra.dao.ClienteDAO" %>
 <%
     // Detectar si se está editando (existe el parámetro "id")
     Integer idCotizacion = null;
     Cotizacion cotizacion = null;
+
+    List<Cliente> clientes = (new ClienteDAO()).obtenerTodosActivos();
 
     if (request.getParameter("id") != null) {
         try {
@@ -18,7 +22,7 @@
     }
 
     // Determinar la acción del formulario
-    String action = cotizacion != null ? "cotizacionController?accion=editar&id=" + idCotizacion : "cotizacionController?accion=crear";
+    String action = cotizacion != null ? "/module/cotizacionController?accion=editar&id=" + idCotizacion : "/module/cotizacionController?accion=crear";
 %>
 
 <form action="<%= action %>" method="POST" class="space-y-2" novalidate>
@@ -32,10 +36,14 @@
         <!-- Cliente ID -->
         <div class="space-y-1">
             <label for="clienteId" class="block text-sm font-medium text-zinc-300">Cliente</label>
-            <input type="number" id="clienteId" name="clienteId" value="<%= cotizacion != null ? cotizacion.getClienteId() : "" %>"
-                   placeholder="Ej: 1"
-                   class="w-full px-3 py-2 bg-zinc-800/70 border border-zinc-700 rounded-md shadow-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-red-500/80 focus:border-transparent transition-all duration-150"
-                   required>
+            <select id="clienteId"
+                    class="w-full px-3 py-2 bg-zinc-800/70 border border-zinc-700 rounded-md shadow-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-red-500/80 focus:border-transparent transition-all duration-150"
+                    name="clienteId">
+                <option value="">Selecciona un Cliente</option>
+                <% for (Cliente c : clientes) { %>
+                <option <%= cotizacion != null && cotizacion.getClienteId()==c.getId() ? "selected" : "" %> value="<%= c.getId() %>"><%= c.getNombre() %></option>
+                <% } %>
+            </select>
         </div>
 
         <!--

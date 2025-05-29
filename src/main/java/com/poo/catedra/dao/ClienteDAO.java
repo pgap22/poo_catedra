@@ -77,4 +77,9 @@ public class ClienteDAO {
         String sql = "SELECT * FROM clientes WHERE documentoIdentificacion = ?"; // Corregido
         return Conexion.queryOne(sql, mapper, documentoIdentificacion);
     }
+
+    public List<Cliente> obtenerTodosActivos() {
+        String sql = "SELECT * FROM clientes WHERE estado = 1";
+        return Conexion.query(sql, mapper);
+    }
 }
