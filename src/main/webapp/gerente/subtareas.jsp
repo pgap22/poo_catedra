@@ -1,0 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ include file="/partials/gerente/header.jsp" %>
+
+<%@ include file="/modules/cotizaciones/asignaciones/subtareas/subtareas.jsp" %>
+
+<%@ include file="/partials/gerente/footer.jsp" %>
