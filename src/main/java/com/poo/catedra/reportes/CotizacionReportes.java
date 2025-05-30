@@ -15,6 +15,7 @@ import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -56,8 +57,16 @@ public class CotizacionReportes extends HttpServlet {
             Map<String, Object> parameters = new HashMap<>();
             String reportDir = getServletContext().getRealPath("/") + System.getProperty("file.separator");
             parameters.put("REPORT_DIR", reportDir);
-            parameters.put("fechaInicio", fechaInicio);
-            parameters.put("fechaFin", fechaFin);
+
+
+            // Start of day
+            Timestamp fechaIniciostr = Timestamp.valueOf(fechaInicio + " 00:00:00");
+
+            // End of day
+            Timestamp fechaFinstr = Timestamp.valueOf(fechaFin + " 23:59:59");
+
+            parameters.put("fechaInicio", fechaIniciostr);
+            parameters.put("fechaFin", fechaFinstr);
 
             // Obtener ruta del archivo .jasper
             String pathReporte = getServletContext().getRealPath(JASPER_FILE);
