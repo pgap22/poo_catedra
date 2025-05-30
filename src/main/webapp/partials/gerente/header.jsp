@@ -47,11 +47,11 @@
             <span>Rep. Cotizacion</span>
           </div>
         </a>
-        <a href="/gerente/reporteSubtarea.jsp">
-          <div class="p-4 rounded-lg font-bold cursor-pointer hover:bg-[#262626] w-full">
-            <span>Rep. Subtarea</span>
-          </div>
-        </a>
+<%--        <a href="/gerente/reporteSubtarea.jsp">--%>
+<%--          <div class="p-4 rounded-lg font-bold cursor-pointer hover:bg-[#262626] w-full">--%>
+<%--            <span>Rep. Subtarea</span>--%>
+<%--          </div>--%>
+<%--        </a>--%>
         <a href="/sesionController?logout=1" class="block p-4 rounded-lg font-medium cursor-pointer bg-red-900/50 hover:bg-red-900 text-red-100 hover:text-white transition-colors w-full text-left">
           <div class="flex items-center justify-start gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
