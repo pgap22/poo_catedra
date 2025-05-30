@@ -43,11 +43,19 @@ public class AsignacionController extends HttpServlet {
         String accion = request.getParameter("accion");
         HttpSession session = request.getSession(false);
         String rol = (String) session.getAttribute("rol");
+        String empleadoIdStr = request.getParameter("empleadoId");
 
         switch (accion) {
             case "crear":
                 // Crear una nueva asignación
                 Asignacion nueva = new Asignacion();
+
+                if (empleadoIdStr == null || empleadoIdStr.trim().isEmpty()) {
+                    request.setAttribute("error", "El ID del empleado es obligatorio.");
+                    request.getRequestDispatcher("/" + rol + "/cotizaciones.jsp").forward(request, response);
+                    return;
+                }
+
                 nueva.setCotizacionId(Integer.parseInt(request.getParameter("cotizacionId")));
                 nueva.setEmpleadoId(Integer.parseInt(request.getParameter("empleadoId")));
                 nueva.setAreaAsignada(request.getParameter("areaAsignada"));
@@ -72,7 +80,7 @@ public class AsignacionController extends HttpServlet {
                 nueva.setFechaHoraFin(LocalDateTime.parse(request.getParameter("fechaHoraFin")));
                 nueva.setCostoPorHora(Double.parseDouble(request.getParameter("costoPorHora")));
                 nueva.setIncrementoExtraPorcentaje(Double.parseDouble(request.getParameter("incrementoExtraPorcentaje")));
-                nueva.setCantidadHorasAproximadas(Integer.parseInt(request.getParameter("cantidadHorasAproximadas")));
+                nueva.setCantidadHorasAproximadas(Double.parseDouble(request.getParameter("cantidadHorasAproximadas")));
 
                 List<String> erroresCrear = AsignacionValidator.validar(nueva);
                 if (!erroresCrear.isEmpty()) {
@@ -90,6 +98,13 @@ public class AsignacionController extends HttpServlet {
                 Asignacion existente = asignacionDAO.obtenerPorId(idEditar);
 
                 if (existente != null) {
+
+                    if (empleadoIdStr == null || empleadoIdStr.trim().isEmpty()) {
+                        request.setAttribute("error", "El ID del empleado es obligatorio.");
+                        request.getRequestDispatcher("/" + rol + "/cotizaciones.jsp").forward(request, response);
+                        return;
+                    }
+
                     existente.setCotizacionId(Integer.parseInt(request.getParameter("cotizacionId")));
                     existente.setEmpleadoId(Integer.parseInt(request.getParameter("empleadoId")));
                     existente.setAreaAsignada(request.getParameter("areaAsignada"));

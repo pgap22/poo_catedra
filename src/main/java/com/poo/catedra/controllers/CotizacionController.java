@@ -57,11 +57,20 @@ public class CotizacionController extends HttpServlet {
         String accion = request.getParameter("accion");
         HttpSession session = request.getSession(false);
         String rol = (String) session.getAttribute("rol");
+        String clienteIdStr = (String) session.getAttribute("cliente");
 
         switch (accion) {
             case "crear":
                 // Crear una nueva cotización
                 Cotizacion nueva = new Cotizacion();
+
+                clienteIdStr = request.getParameter("clienteId");
+                if (clienteIdStr == null || clienteIdStr.trim().isEmpty()) {
+                    request.setAttribute("error", "El Cliente es obligatorio.");
+                    request.getRequestDispatcher("/" + rol + "/cotizaciones.jsp").forward(request, response);
+                    return;
+                }
+
                 nueva.setClienteId(Integer.parseInt(request.getParameter("clienteId")));
                 nueva.setEstado(EstadoCotizacion.EnProceso);
                 nueva.setFechaInicioTentativa(LocalDateTime.parse(request.getParameter("fechaInicioTentativa")));
@@ -86,6 +95,14 @@ public class CotizacionController extends HttpServlet {
                 Cotizacion existente = cotizacionDAO.obtenerPorId(idEditar);
 
                 if (existente != null) {
+
+                    clienteIdStr = request.getParameter("clienteId");
+                    if (clienteIdStr == null || clienteIdStr.trim().isEmpty()) {
+                        request.setAttribute("error", "El Cliente es obligatorio.");
+                        request.getRequestDispatcher("/" + rol + "/cotizaciones.jsp").forward(request, response);
+                        return;
+                    }
+
                     existente.setClienteId(Integer.parseInt(request.getParameter("clienteId")));
                     existente.setFechaInicioTentativa(LocalDateTime.parse(request.getParameter("fechaInicioTentativa")));
                     existente.setFechaFinTentativa(LocalDateTime.parse(request.getParameter("fechaFinTentativa")));
