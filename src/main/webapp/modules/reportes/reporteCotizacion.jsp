@@ -14,7 +14,7 @@
     </div>
     <% } %>
 
-    <form action="/reporte/cotizacionReportes" method="get" class="space-y-4">
+    <form action="/reporte/cotizacionReportes" method="get" class="space-y-4" novalidate>
         <div>
             <label for="fechaInicio" class="block mb-1">Fecha Inicio:</label>
             <input type="date" id="fechaInicio" name="fechaInicio" required
