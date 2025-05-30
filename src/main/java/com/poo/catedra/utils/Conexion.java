@@ -19,7 +19,7 @@ public final class Conexion {
     // URL, usuario y contraseña de la base de datos
     private static final String URL = "jdbc:mysql://localhost:3306/db_poo";
     private static final String USUARIO = "root";
-    private static final String CONTRASENA = "root";
+    private static final String CONTRASENA = "";
 
     // Cargar el driver de MySQL al iniciar la clase
     static {
