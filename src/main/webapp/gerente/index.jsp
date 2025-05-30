@@ -47,7 +47,7 @@
         <p class="text-lg text-mw-text-secondary mb-1">Módulo de clientes.</p>
       </div>
       <div class="flex items-center justify-between">
-        <a href="#" class="text-sm font-bold text-mw-link flex items-center">
+        <a href="/gerente/clientes.jsp" class="text-sm font-bold text-mw-link flex items-center">
           Ir al módulo
           <span class="ml-1 w-3 h-3 rounded-full border border-mw-link flex items-center justify-center align-middle">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-2 h-2 text-mw-link">
@@ -64,11 +64,11 @@
 
     <div class="bg-mw-module rounded-xl p-8 flex flex-col justify-between h-64">
       <div class="mb-0.5">
-        <h3 class="text-xl font-bold text-mw-text-light mb-0">Empresas</h3>
-        <p class="text-lg text-mw-text-secondary mb-1">Módulo de empresas.</p>
+        <h3 class="text-xl font-bold text-mw-text-light mb-0">Empleados</h3>
+        <p class="text-lg text-mw-text-secondary mb-1">Módulo de Empleados.</p>
       </div>
       <div class="flex items-center justify-between">
-        <a href="#" class="text-sm font-bold text-mw-link flex items-center">
+        <a href="/gerente/empleados.jsp" class="text-sm font-bold text-mw-link flex items-center">
           Ir al módulo
           <span class="ml-1 w-3 h-3 rounded-full border border-mw-link flex items-center justify-center align-middle">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-2 h-2 text-mw-link">
@@ -89,7 +89,7 @@
         <p class="text-lg text-mw-text-secondary mb-1">Módulo de cotizaciones.</p>
       </div>
       <div class="flex items-center justify-between">
-        <a href="#" class="text-sm font-bold text-mw-link flex items-center">
+        <a href="/gerente/cotizaciones.jsp" class="text-sm font-bold text-mw-link flex items-center">
           Ir al módulo
           <span class="ml-1 w-3 h-3 rounded-full border border-mw-link flex items-center justify-center align-middle">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-2 h-2 text-mw-link">

@@ -24,7 +24,7 @@
       <div class="flex flex-col gap-2 w-[200px]">
         <a href="/gerente/index.jsp">
           <div class="p-4 rounded-lg font-bold cursor-pointer hover:bg-[#262626] w-full">
-            <span>Usuarios</span>
+            <span>Inicio</span>
           </div>
         </a>
         <a href="/gerente/clientes.jsp">
