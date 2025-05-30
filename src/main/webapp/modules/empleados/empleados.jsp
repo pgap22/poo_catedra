@@ -86,7 +86,7 @@
           <button type="submit"
                   class="w-full py-1.5 px-3 <%= e.getEstado() ? "bg-amber-700 hover:bg-amber-600" : "bg-emerald-700 hover:bg-emerald-600" %> text-white text-sm rounded-md transition-colors"
                   onclick="return confirm('¿Confirmar cambio de estado?')">
-            <%= e.getEstado().equals("Activo") ? "Inactivar" : "Activar" %>
+            <%= e.getEstado() ? "Inactivar" : "Activar" %>
           </button>
         </form>
 
