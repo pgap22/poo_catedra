@@ -42,12 +42,12 @@
             <span>Cotizaciones</span>
           </div>
         </a>
-        <a href="/admin/reporteCotizacion.jsp">
+        <a href="/gerente/reporteCotizacion.jsp">
           <div class="p-4 rounded-lg font-bold cursor-pointer hover:bg-[#262626] w-full">
             <span>Rep. Cotizacion</span>
           </div>
         </a>
-        <a href="/admin/reporteSubtarea.jsp">
+        <a href="/gerente/reporteSubtarea.jsp">
           <div class="p-4 rounded-lg font-bold cursor-pointer hover:bg-[#262626] w-full">
             <span>Rep. Subtarea</span>
           </div>

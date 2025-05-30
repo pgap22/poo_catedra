@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String rol = (String) session.getAttribute("rol");
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -45,9 +48,9 @@
         Por favor, inicia sesión con una cuenta que tenga los permisos necesarios.
     </p>
 
-    <a href="login/login.jsp"
+    <a href="/<%=rol%>/index.jsp"
        class="inline-block px-8 py-4 bg-mw-red text-white font-semibold rounded-xl shadow-md hover:bg-red-700 hover:shadow-lg transition-all duration-100 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-500">
-        Ir a Iniciar sesión
+        Ir a Inicio
     </a>
 </div>
 
